@@ -1,0 +1,30 @@
+{
+  "name": "@lassehaslev/laravel-package-template",
+  "version": "0.0.1",
+  "description": "Create a nice starter template for laravel package",
+  "main": "bin/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LasseHaslev/laravel-package-template.git"
+  },
+  "keywords": [
+    "laravel",
+    "package",
+    "template"
+  ],
+  "author": "Lasse S. Haslev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LasseHaslev/laravel-package-template/issues"
+  },
+  "homepage": "https://github.com/LasseHaslev/laravel-package-template#readme",
+  "bin": {
+    "laravel-package-template": "./bin/app.js"
+  },
+  "dependencies": {
+    "@lassehaslev/templater": "^0.1.0"
+  }
+}

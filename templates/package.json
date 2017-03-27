@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "laravel-elixir": "^6.0.0-14"
+  },
+  "scripts": {
+      "test": "gulp",
+      "dev": "gulp tdd"
+  }
+}

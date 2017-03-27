@@ -1,0 +1,32 @@
+{
+    "name": "<% composer.name %>",
+    "type": "laravel-plugin",
+    "authors": [
+        {
+            "name": "<% author.name %>",
+            "email": "<% author.email %>"
+        }
+    ],
+    "require": {
+        "lassehaslev/laravel-package-router": "0.x"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.3.x",
+        "phpunit/phpunit": "^5.6"
+    },
+    "extra": {
+        "laravel-modules": {
+            "service-provider": "<% package.namespace %>\\Providers\\ServiceProvider"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "<% package.namespace %>\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    }
+}

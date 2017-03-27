@@ -1,7 +1,8 @@
 #! /usr/bin/env node
 
-# Todo
-# - Add backslashes to all single backslashes in composer.json
+// Todo
+// - Add backslashes to all single backslashes in composer.json
+// - Add Promise to templater
 
 var templater = require( '@lassehaslev/templater' );
 

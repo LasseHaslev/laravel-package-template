@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/LasseHaslev/laravel-package-template#readme",
   "bin": {
-    "laravel-package-template": "./bin/app.js"
+    "laravel-package": "./bin/app.js"
   },
   "dependencies": {
     "@lassehaslev/templater": "^0.1.0"

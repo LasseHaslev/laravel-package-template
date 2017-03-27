@@ -11,10 +11,10 @@ npm install -g @lassehaslev/laravel-package-template
 # Go to the folder you want to create a package
 
 # Option 1: Install all in current folder
-laravel-package-template
+laravel-package
 
 # Option 2: Install in other folder
-laravel-package-template my-new-package
+laravel-package my-new-package
 
 # Follow instructions and you are good to go!
 ```
@@ -30,7 +30,7 @@ And this is my workflow:
 cd Modules/
 
 # Kickstart new module
-laravel-package-template new-package
+laravel-package new-package
 
 # Update composer.lock
 composer dumpautoload

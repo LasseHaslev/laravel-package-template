@@ -1,12 +1,14 @@
 #! /usr/bin/env node
 
+var fs = require( 'fs' );
+
 // Todo
 // - Add backslashes to all single backslashes in composer.json
 // - Add Promise to templater
 
-var templater = require( '@lassehaslev/templater' );
+var Templater = require( '@lassehaslev/templater' );
 
-var templater = templater([
+var templater = new Templater([
     {
         type: 'input',
         name: 'author.name',
@@ -64,3 +66,23 @@ var templater = templater([
 ], {
     templateFolder: __dirname + '/../templates',
 });
+
+var addDoubleSlashes = function() {
+}
+
+// console.log(fs);
+
+templater.start().then( function( response ) {
+    // console.log(response.folder);
+    var composerFile = response.folder + '/composer.json';
+    fs.readFile(composerFile, 'utf8', function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+        var result = data.replace( /\\\\/g, '\\' ).replace( /\\/g, '\\\\' );
+
+        fs.writeFile(composerFile, result, 'utf8', function (err) {
+            if (err) return console.log(err);
+        });
+    });
+} );

@@ -25,6 +25,6 @@
     "laravel-package": "./bin/app.js"
   },
   "dependencies": {
-    "@lassehaslev/templater": "^0.1.0"
+    "@lassehaslev/templater": "^0.2.2"
   }
 }

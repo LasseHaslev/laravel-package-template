@@ -1,6 +1,6 @@
 {
   "name": "@lassehaslev/laravel-package-template",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Create a nice starter template for laravel package",
   "main": "bin/app.js",
   "scripts": {

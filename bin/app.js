@@ -31,7 +31,7 @@ var templater = new Templater([
         type: 'input',
         name: 'package.namespace',
         message: 'Namespace',
-        default: 'LasseHaslev\\Namespace',
+        default: 'LasseHaslev\\MyNamespace',
     },
     {
         type: 'input',
@@ -70,19 +70,41 @@ var templater = new Templater([
 var addDoubleSlashes = function() {
 }
 
-// console.log(fs);
+var fixComposerFile = function fixComposerFile( response ) {
+    var composerFile = response.folder + '/composer.json';
+    return new Promise( function(resolve, reject) {
+        fs.readFile(composerFile, 'utf8', function (err,data) {
+            if (err) {
+                reject( err );
+                return console.log(err);
+            }
+            var result = data.replace( /\\\\/g, '\\' ).replace( /\\/g, '\\\\' );
+
+            fs.writeFile(composerFile, result, 'utf8', function (err) {
+                if (err) {
+                    reject( err );
+                    return console.log(err);
+                }
+                resolve();
+            });
+        });
+    } );
+};
+
+var changeFileName = function changeFileName( response ) {
+    return new Promise( function( resolve, reject ) {
+        fs.rename( response.folder + '/config/my_package.php', response.folder + '/config/' + response.data.package.name + '.php', function( error ) {
+            if (error) {
+                console.error( error );
+                reject( error );
+            }
+            resolve();
+        } );
+    } );
+};
 
 templater.start().then( function( response ) {
-    // console.log(response.folder);
-    var composerFile = response.folder + '/composer.json';
-    fs.readFile(composerFile, 'utf8', function (err,data) {
-        if (err) {
-            return console.log(err);
-        }
-        var result = data.replace( /\\\\/g, '\\' ).replace( /\\/g, '\\\\' );
-
-        fs.writeFile(composerFile, result, 'utf8', function (err) {
-            if (err) return console.log(err);
-        });
-    });
+    return Promise.all([ changeFileName( response ), fixComposerFile( response ) ])
+} ).then( function() {
+    console.log( 'Success! Happy coding!' );
 } );

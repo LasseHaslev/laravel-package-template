@@ -7,9 +7,6 @@
             "email": "<% author.email %>"
         }
     ],
-    "require": {
-        "lassehaslev/laravel-package-router": "0.x"
-    },
     "require-dev": {
         "orchestra/testbench": "3.3.x",
         "phpunit/phpunit": "^5.6"

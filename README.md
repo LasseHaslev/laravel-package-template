@@ -7,33 +7,14 @@ npm install -g @lassehaslev/laravel-package-template
 ```
 
 ## Usage
-```bash
-# Go to the folder you want to create a package
+> I use this package together with [LasseHaslev/laravel-modules](https://github.com/LasseHaslev/laravel-modules) as follows:
 
-# Option 1: Install all in current folder
-laravel-package
+1. ```cd``` in to your application folder
+2. Then run 
+    ```git clone https://github.com/LasseHaslev/LaravelPackageTemplate.git Modules/{your-package-name}```
+3. `cd Modules/{your-package-name}`
 
-# Option 2: Install in other folder
-laravel-package my-new-package
+4. Then run the package installer by typing ```sh install.sh```. 
 
-# Follow instructions and you are good to go!
-```
+6. **Happy coding!**
 
-## Recommended
-I use this package together with [LasseHaslev/laravel-modules](https://github.com/LasseHaslev/laravel-modules).
-
-And this is my workflow:
-```bash
-# cd in to project folder
-
-# Go into Modules folder
-cd Modules/
-
-# Kickstart new module
-laravel-package new-package
-
-# Update composer.lock
-composer dumpautoload
-
-# Yep! All done!
-```

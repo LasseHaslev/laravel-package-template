@@ -17,7 +17,39 @@ class ServiceProvider extends BaseServiceProvider
     public function register()
     {
         $this->mergeConfigFrom( __DIR__.'/../../config/<% package.name %>.php', '<% package.name %>');
-        Router::create();
+
+        $this->registerEloquentFactories();
+
+        $this->registerRouteFiles();
+    }
+
+    /**
+     * Register routes
+     *
+     * @return void
+     */
+    protected function registerRouteFiles()
+    {
+        Route::group( ['middleware' => ['web']], function ( $router )
+        {
+            require( __DIR__ . '/../../routes/web.php' );
+        } );
+        Route::group( ['middleware' => ['api']], function ( $router )
+        {
+            require( __DIR__ . '/../../routes/api.php' );
+        } );
+    }
+
+    /**
+     * Register factories.
+     *
+     * @param  string  $path
+     * @return void
+     */
+    protected function registerEloquentFactories()
+    {
+        $this->app->make(Factory::class)
+            ->load(__DIR__.'/../../database/factories');
     }
 
     /**

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use <% package.namespace %>\Http\Router;
+use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Facades\Route;
 
 /**
  * Class ServiceProvider

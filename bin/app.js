@@ -91,20 +91,41 @@ var fixComposerFile = function fixComposerFile( response ) {
     } );
 };
 
-var changeFileName = function changeFileName( response ) {
-    return new Promise( function( resolve, reject ) {
-        fs.rename( response.folder + '/config/my_package.php', response.folder + '/config/' + response.data.package.name + '.php', function( error ) {
-            if (error) {
-                console.error( error );
-                reject( error );
-            }
-            resolve();
-        } );
-    } );
+var changeFilenames = function changeFilenames( response ) {
+    return Promise.all([
+        new Promise( function( resolve, reject ) {
+            fs.rename( response.folder + '/config/my_package.php', response.folder + '/config/' + response.data.package.name + '.php', function( error ) {
+                if (error) {
+                    console.error( error );
+                    reject( error );
+                }
+                resolve();
+            } );
+        } ),
+        new Promise( function( resolve, reject ) {
+            var date = new Date();
+            fs.rename( response.folder + '/database/migrations/my_package.php', response.folder + '/database/migrations/' + date.getFullYear() + '_' + ("0" + (date.getMonth() + 1)).slice(-2) + '_' + ("0" + date.getDate()).slice(-2) + '_' + date.getTime().toString().substring( 0, 6 ) + '_create_' + response.data.package.name + '_table.php', function( error ) {
+                if (error) {
+                    console.error( error );
+                    reject( error );
+                }
+                resolve();
+            } );
+        } ),
+        new Promise( function( resolve, reject ) {
+            fs.rename( response.folder + '/src/Model.php', response.folder + '/src/' + response.data.model.single + '.php', function( error ) {
+                if (error) {
+                    console.error( error );
+                    reject( error );
+                }
+                resolve();
+            } );
+        } ),
+    ])
 };
 
 templater.start().then( function( response ) {
-    return Promise.all([ changeFileName( response ), fixComposerFile( response ) ])
+    return Promise.all([ changeFilenames( response ), fixComposerFile( response ) ])
 } ).then( function() {
     console.log( 'Success! Happy coding!' );
 } );
